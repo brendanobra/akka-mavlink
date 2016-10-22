@@ -14,8 +14,12 @@ libraryDependencies ++= {
            "com.typesafe.akka" %% "akka-remote" % "2.4.11",
            "com.github.akileev" %% "akka-serial-io" % "1.0.2",
            "com.typesafe" % "config" % "1.3.1",
-          "com.iheart" %% "ficus" % "1.1.3"
+           "com.iheart" %% "ficus" % "1.1.3"
   	)
 }
 
 enablePlugins(SbtMavlink)
+
+mavlinkDialect := baseDirectory.value / "mavlink" / "message_definitions" / "v1.0" / "minimal.xml"
+
+

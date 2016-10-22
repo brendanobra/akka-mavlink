@@ -9,7 +9,11 @@ organization := "org.obrafamily"
 libraryDependencies ++= {
   	Seq(
            "org.scalactic" %% "scalactic" % "3.0.0",
-           "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+           "org.scalatest" %% "scalatest" % "3.0.0" % "test",
+           "com.typesafe.akka" %% "akka-actor" % "2.4.11",
+           "com.typesafe.akka" %% "akka-remote" % "2.4.11",
+           "com.github.akileev" %% "akka-serial-io" % "1.0.2"
+        
   	)
 }
 

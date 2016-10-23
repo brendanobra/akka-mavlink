@@ -1,11 +1,11 @@
 package org.obrafamily.mavlink
 
-import _root_.org.obrafamily.mavlink.actors.io.MavlinkTcpServer
+import _root_.org.obrafamily.mavlink.actors.MavlinkServerProtocol.Init
+import org.obrafamily.mavlink.actors.MavlinkServer
 import akka.actor.{Props, ActorSystem}
 import com.typesafe.config.ConfigFactory
 import net.ceedubs.ficus.Ficus._
-import _root_.org.mavlink._
-import org.obrafamily.mavlink.actors.io._
+
 
 
 /**
@@ -20,6 +20,6 @@ object Main extends App{
 
     implicit val system = ActorSystem( config.as[String]("app.name"), config )
     println(s"Starting with: ${system.name}")
-    system.actorOf(Props(new MavlinkTcpServer)) ! "bam"
+    system.actorOf(Props(new MavlinkServer)) ! Init(config)
   }
 }

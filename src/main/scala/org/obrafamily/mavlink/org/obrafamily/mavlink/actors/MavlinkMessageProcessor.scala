@@ -3,7 +3,7 @@ package org.obrafamily.mavlink.org.obrafamily.mavlink.actors
 import akka.actor.{Props, ActorRef, Actor, ActorLogging}
 import akka.util.ByteString
 import org.obrafamily.mavlink.org.obrafamily.mavlink.actors.MavlinkMessageProcessor.DataReceived
-
+import org.mavlink._
 /**
   * Created by brendan on 10/23/16.
   */

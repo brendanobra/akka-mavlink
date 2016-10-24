@@ -22,4 +22,8 @@ enablePlugins(SbtMavlink)
 
 mavlinkDialect := baseDirectory.value / "mavlink" / "message_definitions" / "v1.0" / "minimal.xml"
 
+mavlinkTarget := baseDirectory.value / "src_managed"
+
+
+
 

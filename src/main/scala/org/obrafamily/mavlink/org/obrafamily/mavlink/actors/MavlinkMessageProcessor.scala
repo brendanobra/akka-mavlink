@@ -13,7 +13,7 @@ class MavlinkMessageProcessor(requestor:ActorRef) extends Actor with ActorLoggin
     case DataReceived(data) =>
 
       log.info(s"received ${data.decodeString("US-ASCII")}")
-      val msg = Mavlink.
+
 
     case _ =>
   }

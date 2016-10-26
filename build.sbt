@@ -1,4 +1,4 @@
-name := "Scala SBT Template"
+name := "akka-mavlink"
 
 version := "1.0-SNAPSHOT"
 
@@ -21,6 +21,8 @@ libraryDependencies ++= {
 }
 
 enablePlugins(SbtMavlink)
+
+enablePlugins(JavaServerAppPackaging)
 
 mavlinkDialect := baseDirectory.value / "mavlink" / "message_definitions" / "v1.0" / "minimal.xml"
 

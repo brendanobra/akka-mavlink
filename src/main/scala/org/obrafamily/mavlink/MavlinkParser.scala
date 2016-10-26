@@ -19,9 +19,7 @@ class MavlinkParser(data:ByteString) {
   )
 
   def toMessage() = {
-    Packet.apply()
 
-    parser.push(data)
   }
 }
 object  MavlinkParser{

@@ -5,7 +5,7 @@ version := "1.0-SNAPSHOT"
 scalaVersion := "2.11.8"
 
 organization := "org.obrafamily"
-resolvers += Resolver.bintrayRepo("project-condor","sbt-mavlink")
+
 libraryDependencies ++= {
   	Seq(
            "org.scalactic" %% "scalactic" % "3.0.0",

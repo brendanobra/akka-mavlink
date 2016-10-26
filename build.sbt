@@ -4,7 +4,9 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
-organization := "org.obrafamily"
+organization := "org.obrafamily
+
+resolvers += Resolver.jcenterRepo
 
 libraryDependencies ++= {
   	Seq(

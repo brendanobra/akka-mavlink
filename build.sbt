@@ -6,6 +6,8 @@ scalaVersion := "2.11.8"
 
 organization := "org.obrafamily"
 
+resolvers += Resolver.jcenterRepo
+
 libraryDependencies ++= {
   	Seq(
            "org.scalactic" %% "scalactic" % "3.0.0",

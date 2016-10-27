@@ -1,9 +1,9 @@
-package org.obrafamily.mavlink.org.obrafamily.mavlink.actors
+package org.obrafamily.mavlink.actors
 
-import akka.actor.{Props, ActorRef, Actor, ActorLogging}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import akka.util.ByteString
-import org.obrafamily.mavlink.org.obrafamily.mavlink.actors.MavlinkMessageProcessor.DataReceived
-import org.mavlink._
+import org.obrafamily.mavlink.actors.MavlinkMessageProcessor.DataReceived
+
 /**
   * Created by brendan on 10/23/16.
   */

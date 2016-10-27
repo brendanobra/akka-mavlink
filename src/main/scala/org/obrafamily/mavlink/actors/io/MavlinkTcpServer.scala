@@ -2,16 +2,17 @@ package org.obrafamily.mavlink.actors.io
 
 import java.net.InetSocketAddress
 
-import akka.actor.{ActorRef, Props, Actor, ActorLogging}
-import akka.io.{IO, Tcp}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import akka.io.Tcp._
-import org.obrafamily.mavlink.org.obrafamily.mavlink.actors.MavlinkMessageProcessor
-import org.obrafamily.mavlink.org.obrafamily.mavlink.actors.MavlinkMessageProcessor.DataReceived
+import akka.io.{IO, Tcp}
+import org.obrafamily.mavlink.actors.MavlinkMessageProcessor
+import org.obrafamily.mavlink.actors.MavlinkMessageProcessor.DataReceived
 
 /**
   * Created by brendan on 10/22/16.
   */
 class MavlinkTcpServer( port: Int,interface:String ) extends Actor with ActorLogging {
+  log.info(s"starting")
   log.info(s"binding to ${interface}:${port}")
 
   implicit val system = context.system

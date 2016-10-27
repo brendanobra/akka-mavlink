@@ -11,10 +11,12 @@ import org.obrafamily.mavlink.org.obrafamily.mavlink.actors.MavlinkMessageProces
 /**
   * Created by brendan on 10/22/16.
   */
-class MavlinkTcpServer(port: Int) extends Actor with ActorLogging {
-  log.info(s"binding to port $port")
+class MavlinkTcpServer( port: Int,interface:String ) extends Actor with ActorLogging {
+  log.info(s"binding to ${interface}:${port}")
+
   implicit val system = context.system
-  IO(Tcp) ! Bind(self, new InetSocketAddress("localhost", port))
+
+  IO(Tcp) ! Bind(self, new InetSocketAddress(interface, port))
 
   def receive = {
 
@@ -49,20 +51,18 @@ class MavlinkTcpConnectionHandler(client:ActorRef) extends Actor with ActorLoggi
     case PeerClosed =>
       context stop self
   }
-
-
 }
+
 object MavlinkTcpConnectionHandler {
   def props(client:ActorRef):Props = {
     Props(new MavlinkTcpConnectionHandler(client))
   }
-
 }
 
 object MavlinkTcpServer {
 
-  def props(port: Int) = {
-    Props(new MavlinkTcpServer(port))
+  def props(port: Int,interface:String = "localhost") = {
+    Props(new MavlinkTcpServer(port,interface))
   }
 
 }

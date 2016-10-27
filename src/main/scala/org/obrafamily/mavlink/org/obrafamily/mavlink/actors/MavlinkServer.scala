@@ -9,7 +9,7 @@ import scala.collection.JavaConversions._
 /**
   * Created by brendan on 10/22/16.
   */
-class MavlinkServer extends Actor with ActorLogging{
+class MavlinkServer extends Actor with ActorLogging with Services{
 
   var services:Seq[ActorRef] = _
 
@@ -17,19 +17,6 @@ class MavlinkServer extends Actor with ActorLogging{
     case Init(init) =>
       log.info(s"got init")
       val config = init.config
-      services = getServices( config.as[Config]("services") )
-
+      services = getServices( config.as[Config]("services") )(context.system)
   }
-
-  def getServices(config:Config):Seq[ActorRef] = {
-    config.as[Option[Config]]("TCP") match {
-      case Some(tcp) =>
-        val port = tcp.as[Option[Int]]("port").getOrElse(9100)
-        List(context.system.actorOf(MavlinkTcpServer.props(port)))
-      case None =>
-        List()
-    }
-  }
-
-
 }

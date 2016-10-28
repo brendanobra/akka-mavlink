@@ -11,6 +11,8 @@ organization := "org.obrafamily"
 
 resolvers += Resolver.jcenterRepo
 
+resolvers += Resolver.sonatypeRepo("releases")
+
 libraryDependencies ++= {
   	Seq(
            "org.scalactic" %% "scalactic" % "3.0.0",
@@ -21,7 +23,8 @@ libraryDependencies ++= {
            "com.typesafe.akka" %% "akka-cluster-tools" % "2.4.11",
            "com.github.akileev" %% "akka-serial-io" % "1.0.2",
            "com.typesafe" % "config" % "1.3.1",
-           "com.iheart" %% "ficus" % "1.1.3"
+           "com.iheart" %% "ficus" % "1.1.3",
+           "com.pi4j" % "pi4j-core" % "1.1"
   	)
 }
 
@@ -29,21 +32,7 @@ enablePlugins(SbtMavlink)
 
 enablePlugins(JavaServerAppPackaging)
 
-mavlinkDialect := baseDirectory.value / "mavlink" / "message_definitions" / "v1.0" / "minimal.xml"
+mavlinkDialect := baseDirectory.value / "mavlink" / "message_definitions" / "v1.0" / "standard.xml"
 
 mavlinkTarget := baseDirectory.value / "src_managed"
-
-/*
-mappings in Universal += {
-  val confFile = buildEnv.value match {
-    case BuildEnv.Developement => "dev.conf"
-    case BuildEnv.Test => "test.conf"
-    case BuildEnv.Stage => "stage.conf"
-    case BuildEnv.Production => "prod.conf"
-  }
-  ((resourceDirectory in Compile).value / confFile) -> "conf/application.conf"
-}
-*/
-
-
 

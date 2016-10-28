@@ -3,9 +3,12 @@ package org.obrafamily.mavlink.actors.io
 import java.net.InetSocketAddress
 
 import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+import akka.cluster.client.ClusterClient.Publish
 import akka.io.Tcp._
 import akka.io.{IO, Tcp}
-import org.obrafamily.mavlink.actors.MavlinkMessageProcessor
+import org.obrafamily.mavlink.MavlinkMessage
+import org.obrafamily.mavlink.actors.MavlinkActor._
+import org.obrafamily.mavlink.actors.{MavlinkActor, MavlinkMessageProcessor}
 import org.obrafamily.mavlink.actors.MavlinkMessageProcessor.DataReceived
 
 /**
@@ -41,16 +44,23 @@ class MavlinkTcpServer( port: Int,interface:String ) extends Actor with ActorLog
 This just abstracts TCP connection details... delegates actual message
 processing MavlinkMessageProcessor
  */
-class MavlinkTcpConnectionHandler(client:ActorRef) extends Actor with ActorLogging {
+class MavlinkTcpConnectionHandler(client:ActorRef) extends MavlinkActor {
 
   import Tcp._
 
-  def receive = {
+  def rx = {
     case Received(data) =>
-      context.system.actorOf(MavlinkMessageProcessor.props(client)) ! DataReceived( data )
-      client ! Write(data)
+      context.system.actorOf(MavlinkMessageProcessor.props(client))
+      log.info(s"got data:$data, dropping on bus")
+      mediator ! Publish(MavlinkMessages,MavlinkMessage(data,self,client))
     case PeerClosed =>
       context stop self
+    case unknown =>
+      log.error(s"received unknown message: $unknown")
+  }
+
+  override def subscribe(mediator: ActorRef): Unit = {
+
   }
 }
 

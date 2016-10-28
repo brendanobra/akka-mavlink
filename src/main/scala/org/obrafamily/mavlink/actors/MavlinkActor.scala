@@ -8,6 +8,7 @@ import org.obrafamily.mavlink.actors.MavlinkActor._
   * Created by brendan on 10/27/16.
   */
 abstract class MavlinkActor extends  Actor with  ActorLogging{
+
   import DistributedPubSubMediator.Subscribe
 
   val mediator = DistributedPubSub(context.system).mediator
@@ -16,15 +17,13 @@ abstract class MavlinkActor extends  Actor with  ActorLogging{
 
   def receive:Receive = {
     case ack:SubscribeAck =>
-      log.info(s"subscribed with ack=$ack")
-      rx(ack)
-    case other =>
+      //log.debug(s"subscribed with ack=$ack")
 
+    case other =>
       rx(other)
   }
 
   def rx:Receive
-
   def subscribe(mediator:ActorRef)
 }
 

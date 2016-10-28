@@ -9,6 +9,7 @@ import org.obrafamily.mavlink.actors.MavlinkActor._
   * Created by brendan on 10/27/16.
   */
 class MavlinkGpioServer extends MavlinkActor{
+
   log.info(s"starting")
   def rx = {
     case msg =>

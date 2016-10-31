@@ -17,6 +17,12 @@ class MavlinkParser(data:ByteString) {
       sys.error("parse error: " + err)
     }
   )
+ def parse() = {
+
+   parser.push(data)
+ }
+
+
 
   def toMessage() = {
 

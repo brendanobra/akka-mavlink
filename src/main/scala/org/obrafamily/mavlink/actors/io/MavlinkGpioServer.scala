@@ -2,8 +2,9 @@ package org.obrafamily.mavlink.actors.io
 
 import akka.actor.{ActorRef, Actor, ActorLogging}
 import akka.cluster.pubsub.DistributedPubSubMediator.Subscribe
+import org.obrafamily.mavlink.MavlinkPubSubMessages
 import org.obrafamily.mavlink.actors.MavlinkActor
-import org.obrafamily.mavlink.actors.MavlinkActor._
+
 
 /**
   * Created by brendan on 10/27/16.
@@ -18,7 +19,7 @@ class MavlinkGpioServer extends MavlinkActor{
       log.info(s"got something")
   }
 
-  override def subscribe(mediator: ActorRef): Unit = {
-    mediator ! Subscribe(MavlinkMessages, self)
+   def subscribe(mediator: ActorRef): Unit = {
+    mediator ! Subscribe(MavlinkPubSubMessages.mavlinkMessageOutbound, self)
   }
 }

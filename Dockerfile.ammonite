@@ -1,0 +1,7 @@
+FROM iron/scala:latest
+RUN echo "ipv6" >> /etc/modules
+#RUN apk update
+#RUN apk upgrade
+#RUN apk add --force curl
+RUN  curl -L -o /usr/bin/amm https://git.io/vP4Gw &&  chmod +x /usr/bin/amm 
+CMD['amm']

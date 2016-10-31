@@ -6,10 +6,13 @@ import akka.cluster.pubsub.{DistributedPubSub, DistributedPubSubMediator}
 import com.typesafe.config.Config
 import net.ceedubs.ficus.Ficus._
 import MavlinkServerProtocol.Init
-import org.obrafamily.mavlink.actors.MavlinkActor._
+import org.obrafamily.mavlink.MavlinkPubSubMessages
+
 
 /**
   * Created by brendan on 10/22/16.
+  * Main Service class
+  * Sets up IO channels
   */
 class MavlinkServer extends MavlinkActor with Services{
 
@@ -20,16 +23,21 @@ class MavlinkServer extends MavlinkActor with Services{
       log.info(s"got init")
       val config = init.config
       services = getServices( config.as[Config]("services") )(context.system)
+      context.system.actorOf(MavlinkMessageProcessor.props())
+
     case msg =>
       log.info(s"Server:got msg: $msg")
 
   }
+
+
   override def subscribe(mediator: ActorRef): Unit = {
-    mediator ! Subscribe(MavlinkMessages, self)
+    mediator ! Subscribe(MavlinkPubSubMessages.mavlinkMessageInbound,self)
   }
+
 }
+
 object MavlinkServerProtocol{
   case class Init(config:Config)
-
 }
 

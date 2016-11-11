@@ -10,8 +10,9 @@ class MavlinkUdpServer(port:Int,interface:String) extends  Actor with ActorLoggi
   def receive = {
     case _ =>
   }
-
 }
+
+
 object MavlinkUdpServer{
   def props(port:Int, interface:String) = {
     Props(new MavlinkUdpServer(port,interface))

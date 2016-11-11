@@ -1,9 +1,7 @@
 package org.obrafamily.mavlink.actors
 
-import akka.actor.{ActorRef, ActorLogging, Actor}
-import akka.cluster.pubsub.{DistributedPubSub, DistributedPubSubMediator}
-import akka.cluster.pubsub.DistributedPubSubMediator.{Publish, SubscribeAck, Subscribe}
-import akka.event.Logging
+import akka.actor.{ ActorLogging, Actor}
+import akka.cluster.pubsub.DistributedPubSubMediator.{Publish, SubscribeAck}
 
 /**
   * Created by brendan on 10/27/16.

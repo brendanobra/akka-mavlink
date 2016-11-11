@@ -1,15 +1,12 @@
 package org.obrafamily.mavlink
 
 import akka.cluster.Cluster
-import akka.cluster.pubsub.DistributedPubSubMediator.Publish
-import akka.util.ByteString
-import org.obrafamily.mavlink.actors.{MavlinkServerProtocol, MavlinkMessageProcessor, MavlinkActor, MavlinkServer}
+
+import org.obrafamily.mavlink.actors.{MavlinkServerProtocol, MavlinkServer}
 
 import akka.actor.{Props, ActorSystem}
-import akka.cluster.pubsub.{DistributedPubSubMediator, DistributedPubSub}
 import com.typesafe.config.ConfigFactory
 import net.ceedubs.ficus.Ficus._
-import org.obrafamily.mavlink.actors.MavlinkServerProtocol.Init
 
 
 /**

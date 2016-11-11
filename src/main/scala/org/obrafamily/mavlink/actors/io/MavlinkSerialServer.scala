@@ -1,6 +1,6 @@
 package org.obrafamily.mavlink.actors.io
 
-import akka.actor.{ActorRef, Actor, ActorLogging, Props}
+import akka.actor.{ActorRef, Props}
 import akka.cluster.pubsub.DistributedPubSubMediator.Subscribe
 import org.obrafamily.mavlink.MavlinkPubSubMessages
 import org.obrafamily.mavlink.actors.MavlinkActor

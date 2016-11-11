@@ -9,8 +9,8 @@ import akka.cluster.pubsub.DistributedPubSubMediator.{Subscribe, Publish}
 import akka.io.Tcp._
 import akka.io.{IO, Tcp}
 import org.obrafamily.mavlink.{MavlinkPubSubMessages, MavlinkMessage}
-import org.obrafamily.mavlink.actors.{MavlinkActor, MavlinkMessageProcessor}
-import org.obrafamily.mavlink.actors.MavlinkMessageProcessor.DataReceived
+import org.obrafamily.mavlink.actors.{MavlinkActor}
+
 
 /**
   * Created by brendan on 10/22/16.

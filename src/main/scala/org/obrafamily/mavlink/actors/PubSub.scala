@@ -1,7 +1,6 @@
 package org.obrafamily.mavlink.actors
 
-import akka.actor.Actor.Receive
-import akka.actor.{Actor, ActorRef, ActorSystem}
+import akka.actor.{Actor, ActorRef}
 import akka.cluster.pubsub.DistributedPubSub
 
 /**

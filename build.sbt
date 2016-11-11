@@ -12,6 +12,16 @@ organization := "org.obrafamily"
 resolvers += Resolver.jcenterRepo
 
 resolvers += Resolver.sonatypeRepo("releases")
+val thing = "foo"
+
+val foo = ( thing match {
+  case "baz" => "isbaz"
+  case "foo" => "$sadfasdfdsf ```` '''' isfoo"
+  case _ => "last"
+
+})
+
+commandString := foo
 
 libraryDependencies ++= {
   	Seq(
@@ -33,6 +43,22 @@ enablePlugins(SbtMavlink)
 enablePlugins(JavaServerAppPackaging)
 
 mavlinkDialect := baseDirectory.value / "mavlink" / "message_definitions" / "v1.0" / "standard.xml"
+
+processMavlinkDialects := {
+
+  mavlinkDialects.value.foreach( dialectFile=> {
+    println(s"processing ${dialectFile.getAbsolutePath}")
+    mavlinkDialect:= dialectFile
+    mavlinkGenerate.value
+
+  })
+}
+
+mavlinkDialects := Seq(
+  baseDirectory.value / "mavlink" / "message_definitions" / "v1.0" / "standard.xml" ,
+  baseDirectory.value / "mavlink" / "message_definitions" / "v1.0" / "minimal.xml",
+  baseDirectory.value / "mavlink" / "message_definitions" / "v1.0" / "autoquad.xml"
+)
 
 mavlinkTarget := baseDirectory.value / "src_managed"
 

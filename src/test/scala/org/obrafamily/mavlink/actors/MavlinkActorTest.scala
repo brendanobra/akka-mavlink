@@ -10,13 +10,9 @@ import org.scalatest.{BeforeAndAfterAll, FlatSpec, Matchers, WordSpecLike}
 /**
   * Created by brendan on 10/30/16.
   */
-class MavlinkActorTest extends TestKit(ActorSystem("MySpec")) with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll {
-  val underTest = TestActorRef[MavlinkServer]
-  "when MavlinkActor" must {
-    "is set a config message" in {
-      val config = ConfigFactory.load()
-      underTest ! Init(config)
-      expectMsg(InitProcessed(config))
-    }
+abstract class MavlinkActorTest extends TestKit(ActorSystem("AkkaMavlinkTest")) with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll {
+
+  override def afterAll {
+    TestKit.shutdownActorSystem(system)
   }
 }
